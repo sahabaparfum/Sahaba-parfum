@@ -4,12 +4,30 @@ import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 
+const shippingRates = {
+  "Safi": 10,
+  "Casablanca": 35,
+  "Rabat": 35,
+  "Salé": 35,
+  "Kénitra": 35,
+  "Agadir": 35,
+  "Berrechid": 40,
+  "El Jadida": 40,
+  "Fès": 40,
+  "Témara": 40,
+  "Inzegane": 40,
+  "Beni Mellal": 40,
+  "Tétouan": 40,
+  "Larache": 40,
+  "Autre ville": 45 
+};
+
 const Cart = () => {
   const { cartItems, clearCart, removeFromCart } = useCart();
   const [adminPhone, setAdminPhone] = useState("");
   const [client, setClient] = useState({ nom: '', villeSelect: 'Safi', villeAutre: '', adresse: '', tele: '' });
 
-  const delivery = client.villeSelect === 'Safi' ? 0 : 40;
+  const delivery = shippingRates[client.villeSelect] || 0;
   const total = cartItems?.reduce((acc, item) => acc + (item.price * item.quantity), 0) || 0;
 
   useEffect(() => {
@@ -36,7 +54,7 @@ const Cart = () => {
       return;
     }
 
-    const finalVille = client.villeSelect === 'Safi' ? 'Safi' : client.villeAutre;
+    const finalVille = client.villeSelect === 'Autre' ? client.villeAutre : client.villeSelect;
 
     let message = `*SAHABA PARFUM 306 - NOUVELLE COMMANDE*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
@@ -83,6 +101,7 @@ const Cart = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
         <div className="space-y-6">
           {!cartItems || cartItems.length === 0 ? (
             <div className="text-center py-20 bg-gray-50 border-2 border-dashed rounded-xl">
@@ -103,9 +122,7 @@ const Cart = () => {
                       onClick={() => removeFromCart(item.id, item.size, item.name)} 
                       className="text-gray-300 hover:text-red-500 transition-colors"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+                      ✕
                     </button>
                   </div>
                 ))}
@@ -129,54 +146,62 @@ const Cart = () => {
           )}
         </div>
 
+        {/* FORM */}
         <div className="bg-white p-8 border rounded-xl shadow-sm h-fit">
           <h2 className="text-xs font-black mb-8 uppercase tracking-[0.3em] border-b pb-4 text-center">Détails de Livraison</h2>
+
           <form onSubmit={handleWhatsAppOrder} className="space-y-5">
-            <div>
-              <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Nom Complet</label>
-              <input type="text" className="w-full p-3 mt-1 border rounded-lg text-sm focus:border-black outline-none transition-all bg-gray-50" required onChange={(e) => setClient({...client, nom: e.target.value})} />
-            </div>
-            
-            <div>
-              <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Téléphone</label>
-              <input type="tel" className="w-full p-3 mt-1 border rounded-lg text-sm focus:border-black outline-none transition-all bg-gray-50" required onChange={(e) => setClient({...client, tele: e.target.value})} />
-            </div>
 
-            <div>
-              <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Ville</label>
-              <select 
-                className="w-full p-3 mt-1 border rounded-lg text-sm focus:border-black outline-none transition-all bg-gray-50" 
+            <input type="text" placeholder="Nom Complet" required
+              className="w-full p-3 border rounded-lg bg-gray-50"
+              onChange={(e) => setClient({...client, nom: e.target.value})}
+            />
+
+            <input type="tel" placeholder="Téléphone" required
+              className="w-full p-3 border rounded-lg bg-gray-50"
+              onChange={(e) => setClient({...client, tele: e.target.value})}
+            />
+
+            <div className="relative">
+              <select
                 value={client.villeSelect}
-                required
                 onChange={(e) => setClient({...client, villeSelect: e.target.value})}
+                className="w-full p-3 border rounded-lg bg-gray-50 appearance-none focus:border-black outline-none"
               >
-                <option value="Safi">Safi (Livraison Gratuite)</option>
-                <option value="Autre">Autre Ville (+40 DH)</option>
+                {Object.keys(shippingRates).map((city) => (
+                  <option key={city} value={city}>
+                    {city} (+{shippingRates[city]} DH)
+                  </option>
+                ))}
               </select>
+
+              {/* custom arrow */}
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                ▼
+              </div>
             </div>
 
-            {client.villeSelect === 'Autre' && (
-              <div className="animate-fade-in">
-                <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Précisez votre ville</label>
-                <input 
-                  type="text" 
-                  className="w-full p-3 mt-1 border rounded-lg text-sm focus:border-black outline-none transition-all bg-gray-50 border-blue-100" 
-                  required 
-                  placeholder="Ex: Casablanca, Marrakech..."
-                  onChange={(e) => setClient({...client, villeAutre: e.target.value})} 
-                />
-              </div>
+            {client.villeSelect === 'Autre ville' && (
+              <input
+                type="text"
+                placeholder="Votre ville"
+                required
+                className="w-full p-3 border rounded-lg bg-gray-50"
+                onChange={(e) => setClient({...client, villeAutre: e.target.value})}
+              />
             )}
 
-            <div>
-              <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Adresse Complète</label>
-              <textarea className="w-full p-3 mt-1 border rounded-lg text-sm focus:border-black outline-none transition-all bg-gray-50 h-24 resize-none" required onChange={(e) => setClient({...client, adresse: e.target.value})}></textarea>
-            </div>
+            <textarea
+              placeholder="Adresse Complète"
+              required
+              className="w-full p-3 border rounded-lg bg-gray-50"
+              onChange={(e) => setClient({...client, adresse: e.target.value})}
+            ></textarea>
 
-            <button type="submit" className="w-full bg-[#25D366] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-[0.2em] hover:bg-black transition-all flex items-center justify-center gap-2">
-               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-               CONFIRMER SUR WHATSAPP
+            <button type="submit" className="w-full bg-[#25D366] text-white py-4 rounded-lg font-bold">
+              CONFIRMER SUR WHATSAPP
             </button>
+
           </form>
         </div>
       </div>
