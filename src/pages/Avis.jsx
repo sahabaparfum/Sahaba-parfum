@@ -39,7 +39,7 @@ const avisClients = [
   },
 ];
 
-const floatingWords = ["Luxe", "Noir", "Dahbi", "Parfum", "Classe", "Qualité"];
+const floatingWords = ["Luxe", "Sahaba", "Parfum", "Classe", "Qualité"];
 
 export default function Avis() {
   return (
