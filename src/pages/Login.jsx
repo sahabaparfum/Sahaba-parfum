@@ -41,26 +41,34 @@ const Login = () => {
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Email Address</label>
-            <input 
-              type="email" 
-              className="w-full p-4 mt-1 border rounded-xl text-sm focus:border-black outline-none bg-gray-50 transition-all"
-              placeholder="....@gmail.com"
-              required 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+           <input 
+  type="email" 
+  className="w-full p-4 mt-1 border rounded-xl text-sm text-black placeholder-gray-400 focus:border-black outline-none bg-gray-50 transition-all"
+  style={{
+    WebkitTextFillColor: "#111",
+    caretColor: "#111"
+  }}
+  placeholder="....@gmail.com"
+  required 
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
           </div>
 
           <div>
             <label className="text-[9px] font-black uppercase text-gray-400 tracking-widest ml-1">Password</label>
             <input 
-              type="password" 
-              className="w-full p-4 mt-1 border rounded-xl text-sm focus:border-black outline-none bg-gray-50 transition-all"
-              placeholder="••••••••"
-              required 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+  type="password" 
+  className="w-full p-4 mt-1 border rounded-xl text-sm text-black placeholder-gray-400 focus:border-black outline-none bg-gray-50 transition-all"
+  style={{
+    WebkitTextFillColor: "#111",
+    caretColor: "#111"
+  }}
+  placeholder="••••••••"
+  required 
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
           </div>
 
           <button 

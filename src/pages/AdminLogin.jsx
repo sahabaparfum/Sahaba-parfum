@@ -23,6 +23,11 @@ const AdminLogin = () => {
           type="password" 
           placeholder="Code d'accès Admin" 
           className="w-full border p-3 mb-4 text-center outline-none focus:border-[#D4AF37]" 
+           style={{
+    color: "#111",
+    WebkitTextFillColor: "#111",
+    caretColor: "#111"
+  }}
           onChange={(e) => setPass(e.target.value)}
         />
         <button className="w-full bg-black text-white py-3 font-bold uppercase tracking-widest text-xs hover:bg-[#D4AF37] transition">

@@ -1,0 +1,452 @@
+.avis-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(212, 175, 55, 0.16), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(212, 175, 55, 0.12), transparent 28%),
+    linear-gradient(135deg, #050505 0%, #10100f 45%, #060606 100%);
+  color: #fff8e6;
+  overflow: hidden;
+}
+
+.avis-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  padding: 110px 7% 70px;
+}
+
+.avis-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.16);
+  filter: blur(45px);
+  animation: glowFloat 7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.avis-glow-one {
+  top: 80px;
+  left: 5%;
+}
+
+.avis-glow-two {
+  right: 7%;
+  bottom: 20px;
+  animation-delay: 1.2s;
+}
+
+.avis-hero-content,
+.avis-perfume-card,
+.avis-card,
+.avis-luxury-banner {
+  position: relative;
+  z-index: 2;
+}
+
+.avis-eyebrow,
+.avis-section-title p,
+.avis-luxury-banner p {
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.avis-hero h1 {
+  max-width: 760px;
+  margin: 18px 0;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  animation: revealUp 0.9s ease both;
+}
+
+.avis-hero h1 span,
+.avis-section-title h2 span {
+  color: #d4af37;
+  text-shadow: 0 0 28px rgba(212, 175, 55, 0.35);
+}
+
+.avis-subtitle {
+  max-width: 650px;
+  color: #d9cfb5;
+  font-size: 18px;
+  line-height: 1.8;
+  animation: revealUp 1s ease 0.15s both;
+}
+
+.avis-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.avis-stats div {
+  min-width: 145px;
+  padding: 18px 20px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+  animation: revealUp 1s ease 0.25s both;
+}
+
+.avis-stats strong {
+  display: block;
+  color: #d4af37;
+  font-size: 28px;
+}
+
+.avis-stats small {
+  color: #cfc5ab;
+}
+
+.avis-perfume-card {
+  justify-self: center;
+  width: min(360px, 100%);
+  padding: 36px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 34px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(0, 0, 0, 0.32);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.6), inset 0 0 28px rgba(212, 175, 55, 0.08);
+  text-align: center;
+  animation: luxuryFloat 4s ease-in-out infinite;
+}
+
+.avis-bottle {
+  position: relative;
+  width: 120px;
+  height: 180px;
+  margin: 0 auto 24px;
+  border-radius: 28px 28px 42px 42px;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  background: linear-gradient(160deg, #101010, #2b220d 48%, #050505);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.28);
+}
+
+.avis-bottle::before {
+  content: "";
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  width: 48px;
+  height: 42px;
+  transform: translateX(-50%);
+  border-radius: 12px 12px 4px 4px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background: #0d0d0d;
+}
+
+.avis-bottle span {
+  position: absolute;
+  inset: 45px 20px;
+  border-radius: 18px;
+  background: rgba(212, 175, 55, 0.16);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.avis-perfume-card p {
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.avis-perfume-card h2 {
+  margin: 8px 0;
+  font-size: 38px;
+}
+
+.avis-perfume-card small {
+  color: #d7ccb4;
+}
+
+.avis-marquee {
+  border-block: 1px solid rgba(212, 175, 55, 0.24);
+  background: rgba(212, 175, 55, 0.06);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.avis-marquee-track {
+  display: inline-flex;
+  gap: 38px;
+  padding: 18px 0;
+  animation: marqueeMove 20s linear infinite;
+}
+
+.avis-marquee span {
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.avis-grid-section {
+  padding: 80px 7%;
+}
+
+.avis-section-title {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.avis-section-title h2 {
+  margin: 10px auto 0;
+  max-width: 750px;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+}
+
+.avis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.avis-card {
+  padding: 26px;
+  min-height: 310px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
+    rgba(8, 8, 8, 0.82);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  transform: translateY(26px);
+  opacity: 0;
+  animation: cardEnter 0.85s ease var(--delay) both;
+  transition: 0.35s ease;
+}
+
+.avis-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.25), transparent);
+  transform: translateX(-120%);
+  transition: 0.7s ease;
+}
+
+.avis-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(212, 175, 55, 0.48);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.65), 0 0 36px rgba(212, 175, 55, 0.13);
+}
+
+.avis-card:hover::before {
+  transform: translateX(120%);
+}
+
+.avis-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.avis-avatar {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d4af37, #765b14);
+  color: #070707;
+  font-weight: 900;
+  font-size: 22px;
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.3);
+}
+
+.avis-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.avis-card-top p {
+  margin: 4px 0 0;
+  color: #b9af96;
+  font-size: 14px;
+}
+
+.avis-stars {
+  color: #d4af37;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 18px rgba(212, 175, 55, 0.22);
+}
+
+.avis-text {
+  color: #e4dac2;
+  line-height: 1.8;
+  font-size: 15.5px;
+}
+
+.avis-card-line {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.55), transparent);
+}
+
+.avis-luxury-banner {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: center;
+  margin: 0 7% 90px;
+  padding: 34px;
+  border-radius: 32px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: linear-gradient(120deg, rgba(212, 175, 55, 0.12), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+}
+
+.avis-luxury-banner h2 {
+  margin: 8px 0 0;
+  font-size: clamp(28px, 4vw, 46px);
+}
+
+.avis-luxury-banner a {
+  flex-shrink: 0;
+  padding: 15px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d4af37, #8d6b18);
+  color: #060606;
+  text-decoration: none;
+  font-weight: 900;
+  box-shadow: 0 16px 35px rgba(212, 175, 55, 0.22);
+  transition: 0.3s ease;
+}
+
+.avis-luxury-banner a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 45px rgba(212, 175, 55, 0.35);
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes luxuryFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(1.5deg);
+  }
+}
+
+@keyframes glowFloat {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(28px, -24px) scale(1.15);
+  }
+}
+
+@keyframes marqueeMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.33%);
+  }
+}
+
+@media (max-width: 950px) {
+  .avis-hero {
+    grid-template-columns: 1fr;
+    padding-top: 92px;
+  }
+
+  .avis-perfume-card {
+    width: 100%;
+  }
+
+  .avis-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .avis-hero {
+    padding: 82px 5% 50px;
+    gap: 26px;
+  }
+
+  .avis-hero h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .avis-subtitle {
+    font-size: 16px;
+  }
+
+  .avis-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .avis-grid-section {
+    padding: 58px 5%;
+  }
+
+  .avis-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .avis-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .avis-marquee-track {
+    animation-duration: 14s;
+  }
+
+  .avis-marquee span {
+    font-size: 15px;
+  }
+
+  .avis-luxury-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 5% 60px;
+    padding: 26px;
+  }
+
+  .avis-luxury-banner a {
+    width: 100%;
+    text-align: center;
+  }
+}

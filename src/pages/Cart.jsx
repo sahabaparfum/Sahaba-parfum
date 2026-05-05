@@ -94,29 +94,29 @@ const Cart = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-4 md:p-12 min-h-[70vh]">
-      <div className="mb-12 border-b pb-6">
-        <h1 className="text-3xl font-black uppercase italic tracking-tighter">Mon Panier</h1>
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-2">Finalisez votre commande de luxe</p>
+    <div className="bg-[#050505] text-white max-w-5xl mx-auto p-4 md:p-12 min-h-[70vh]">
+      <div className="mb-12 border-b border-[#D4AF37]/20 pb-6">
+        <h1 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter bg-gradient-to-r from-white to-[#D4AF37] bg-clip-text text-transparent">Mon Panier</h1>
+        <p className="text-[10px] text-zinc-500 uppercase tracking-widest mt-2">Finalisez votre commande de luxe</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
         <div className="space-y-6">
           {!cartItems || cartItems.length === 0 ? (
-            <div className="text-center py-20 bg-gray-50 border-2 border-dashed rounded-xl">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Votre panier est vide</p>
+            <div className="text-center py-20 bg-zinc-950 border-2 border-dashed border-[#D4AF37]/20 rounded-3xl">
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Votre panier est vide</p>
             </div>
           ) : (
             <>
               <div className="space-y-4">
                 {cartItems.map((item) => (
-                  <div key={`${item.id}-${item.size}`} className="flex gap-4 border-b pb-4 items-center group">
-                    <img src={item.image} alt={item.name} className="w-16 h-20 object-cover rounded shadow-sm" />
+                  <div key={`${item.id}-${item.size}`} className="flex gap-4 border-b border-[#D4AF37]/15 pb-4 items-center group">
+                    <img src={item.image} alt={item.name} className="w-16 h-20 object-cover rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.4)] border border-[#D4AF37]/15" />
                     <div className="flex-1">
-                      <h3 className="font-black text-xs uppercase tracking-tight">{item.name}</h3>
-                      <p className="text-[10px] text-gray-400 font-bold uppercase">{item.size} • Qté: {item.quantity}</p>
-                      <p className="font-bold text-sm mt-1">{item.price} DH</p>
+                      <h3 className="font-black text-xs uppercase tracking-tight text-white">{item.name}</h3>
+                      <p className="text-[10px] text-zinc-500 font-bold uppercase">{item.size} • Qté: {item.quantity}</p>
+                      <p className="font-bold text-sm mt-1 text-[#D4AF37]">{item.price} DH</p>
                     </div>
                     <button 
                       onClick={() => removeFromCart(item.id, item.size, item.name)} 
@@ -128,8 +128,8 @@ const Cart = () => {
                 ))}
               </div>
 
-              <div className="pt-6 space-y-2 border-t-2 border-black">
-                <div className="flex justify-between text-[10px] font-bold uppercase text-gray-400">
+              <div className="pt-6 space-y-2 border-t-2 border-[#D4AF37]">
+                <div className="flex justify-between text-[10px] font-bold uppercase text-zinc-500">
                   <span>Sous-total</span>
                   <span>{total} DH</span>
                 </div>
@@ -137,7 +137,7 @@ const Cart = () => {
                   <span>Livraison</span>
                   <span>{delivery === 0 ? 'Gratuit' : `${delivery} DH`}</span>
                 </div>
-                <div className="flex justify-between text-xl font-black pt-2">
+                <div className="flex justify-between text-xl font-black pt-2 text-[#D4AF37]">
                   <span>TOTAL</span>
                   <span>{total + delivery} DH</span>
                 </div>
@@ -147,18 +147,18 @@ const Cart = () => {
         </div>
 
         {/* FORM */}
-        <div className="bg-white p-8 border rounded-xl shadow-sm h-fit">
-          <h2 className="text-xs font-black mb-8 uppercase tracking-[0.3em] border-b pb-4 text-center">Détails de Livraison</h2>
+        <div className="bg-gradient-to-b from-zinc-950 to-black p-8 border border-[#D4AF37]/20 rounded-[2rem] shadow-[0_25px_80px_rgba(0,0,0,0.45)] h-fit">
+          <h2 className="text-xs font-black mb-8 uppercase tracking-[0.3em] border-b border-[#D4AF37]/20 pb-4 text-center text-[#D4AF37]">Détails de Livraison</h2>
 
           <form onSubmit={handleWhatsAppOrder} className="space-y-5">
 
             <input type="text" placeholder="Nom Complet" required
-              className="w-full p-3 border rounded-lg bg-gray-50"
+              className="w-full p-4 border border-[#D4AF37]/20 rounded-2xl bg-black/60 text-white placeholder:text-zinc-600 focus:border-[#D4AF37] outline-none"
               onChange={(e) => setClient({...client, nom: e.target.value})}
             />
 
             <input type="tel" placeholder="Téléphone" required
-              className="w-full p-3 border rounded-lg bg-gray-50"
+              className="w-full p-4 border border-[#D4AF37]/20 rounded-2xl bg-black/60 text-white placeholder:text-zinc-600 focus:border-[#D4AF37] outline-none"
               onChange={(e) => setClient({...client, tele: e.target.value})}
             />
 
@@ -166,7 +166,7 @@ const Cart = () => {
               <select
                 value={client.villeSelect}
                 onChange={(e) => setClient({...client, villeSelect: e.target.value})}
-                className="w-full p-3 border rounded-lg bg-gray-50 appearance-none focus:border-black outline-none"
+                className="w-full p-4 border border-[#D4AF37]/20 rounded-2xl bg-black/60 text-white appearance-none focus:border-[#D4AF37] outline-none"
               >
                 {Object.keys(shippingRates).map((city) => (
                   <option key={city} value={city}>
@@ -186,7 +186,7 @@ const Cart = () => {
                 type="text"
                 placeholder="Votre ville"
                 required
-                className="w-full p-3 border rounded-lg bg-gray-50"
+                className="w-full p-4 border border-[#D4AF37]/20 rounded-2xl bg-black/60 text-white placeholder:text-zinc-600 focus:border-[#D4AF37] outline-none"
                 onChange={(e) => setClient({...client, villeAutre: e.target.value})}
               />
             )}
@@ -194,11 +194,11 @@ const Cart = () => {
             <textarea
               placeholder="Adresse Complète"
               required
-              className="w-full p-3 border rounded-lg bg-gray-50"
+              className="w-full p-4 border border-[#D4AF37]/20 rounded-2xl bg-black/60 text-white placeholder:text-zinc-600 focus:border-[#D4AF37] outline-none"
               onChange={(e) => setClient({...client, adresse: e.target.value})}
             ></textarea>
 
-            <button type="submit" className="w-full bg-[#25D366] text-white py-4 rounded-lg font-bold">
+            <button type="submit" className="w-full bg-[#D4AF37] text-black py-4 rounded-full font-black uppercase tracking-[0.25em] text-[11px] hover:bg-white transition shadow-[0_0_35px_rgba(212,175,55,0.25)]">
               CONFIRMER SUR WHATSAPP
             </button>
 

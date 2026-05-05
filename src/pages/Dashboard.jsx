@@ -172,7 +172,7 @@ const Dashboard = () => {
               <input 
                 type="text" 
                 placeholder="WhatsApp..." 
-                className="border rounded-lg p-2 text-[10px] outline-none flex-1 md:w-32"
+                className="border rounded-lg p-2 text-sm text-black text-[10px] outline-none flex-1 md:w-32"
                 value={whatsappPhone}
                 onChange={(e) => setWhatsappPhone(e.target.value)}
               />

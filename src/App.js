@@ -13,6 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login'; 
 import AboutUs from './pages/About';
+import Avis from "./pages/Avis";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/homme" element={<Homme />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/avis" element={<Avis />} />
 
           <Route path="/login" element={<Login />} />
 
