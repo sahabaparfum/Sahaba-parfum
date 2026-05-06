@@ -11,6 +11,7 @@ const shippingRates = {
   "Salé": 35,
   "Kénitra": 35,
   "Agadir": 35,
+  "Marrakech": 35,
   "Berrechid": 40,
   "El Jadida": 40,
   "Fès": 40,
@@ -146,7 +147,6 @@ const Cart = () => {
           )}
         </div>
 
-        {/* FORM */}
         <div className="bg-gradient-to-b from-zinc-950 to-black p-8 border border-[#D4AF37]/20 rounded-[2rem] shadow-[0_25px_80px_rgba(0,0,0,0.45)] h-fit">
           <h2 className="text-xs font-black mb-8 uppercase tracking-[0.3em] border-b border-[#D4AF37]/20 pb-4 text-center text-[#D4AF37]">Détails de Livraison</h2>
 
@@ -175,7 +175,6 @@ const Cart = () => {
                 ))}
               </select>
 
-              {/* custom arrow */}
               <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
                 ▼
               </div>

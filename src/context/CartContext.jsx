@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
         (item) => item.id === product.id && item.size === size
       );
 
-      // Notification de succès en Français
       Swal.fire({
         title: 'Ajouté !',
         text: `${product.name} (${size}) a été ajouté au panier.`,
