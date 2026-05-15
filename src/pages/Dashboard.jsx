@@ -152,13 +152,44 @@ const Dashboard = () => {
   return (
     <div className="p-2 md:p-8 bg-gray-50 min-h-screen font-sans">
       <style>{`
-        .swal2-actions { margin-top: 20px !important; }
-        .swal2-confirm { background-color: #000000 !important; color: white !important; }
-        .swal2-cancel { background-color: #d33 !important; color: white !important; }
-        /* Style for Description Textarea */
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
-      `}</style>
+  .swal2-actions { margin-top: 20px !important; }
+  .swal2-confirm { background-color: #000000 !important; color: white !important; }
+  .swal2-cancel { background-color: #d33 !important; color: white !important; }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+  }
+
+  /* FIX INPUT TEXT COLORS */
+  input,
+  textarea,
+  select {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    caret-color: #111111 !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #9ca3af !important;
+    -webkit-text-fill-color: #9ca3af !important;
+  }
+
+  /* FIX CHROME AUTOFILL */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: #111111 !important;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+`}</style>
 
       <div className="max-w-6xl mx-auto space-y-4 md:space-y-6">
         
